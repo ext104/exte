@@ -1,0 +1,95 @@
+#!/bin/bash
+
+source ~/exte/etc/exte.conf
+source ~/exte/etc/psx/psx.conf
+
+function run(){
+    if [[ -f "$PSX_PROFILES/$PSPROFILE.sh" ]]
+    then
+        source $PSX_PROFILES/$PSPROFILE.sh
+    else
+        source $PSX_PROFILES/default.sh
+    fi
+}
+
+case $1 in
+    "profile")
+        case $2 in
+            "" | "--help" | "-h")
+                echo -e """\
+\e[1;35mpsx profile\e[m - change profile command prompt
+Usage: psx profile [--help] <name profile>
+
+available profilies:
+    default
+    bottom
+    bottomnull
+    low
+"""
+                ;;
+            *)
+                PSPROFILE=$2
+                run
+                ;;
+        esac
+        ;;
+    "note")
+        case $2 in
+            "--help" | "-h")
+                    echo -e """\
+\e[1;35mpsx note\e[m - add note
+Usage: psx note [--help] <note>
+"""
+                ;;
+            *)
+                PSNOTE=$2
+                run
+                ;;
+        esac
+        ;;
+    "time")
+        case $2 in
+            "unset")
+                PSTIME=""
+                run
+                ;;
+            "--help" | "-h")
+                echo -e """\
+\e[1;35mpsx time\e[m - setup time on command prompt
+Usage: psx time [--help] [unset]
+"""
+                ;;
+            *)
+                PSTIME="true"
+                run
+                ;;
+        esac
+        ;;
+    "reset" | "run")
+        case $2 in
+            "-h" | "--help")
+                echo -e """\
+\e[1;35mpsx reset\e[m - reset command prompt settings
+Usage: psx reset [--help]
+ """
+                ;;
+            *)
+                PSPROFILE=""
+                run
+                ;;
+        esac
+        ;;
+    "" | "--help" | "-h" | "help")
+        echo -e """\
+\e[1;35mpsx\e[m - configurator command prompt 
+Usage: psx [--help] <command> [args]
+
+These are common psx commands used:
+    psx reset       reset command prompt settings
+    psx note        add note
+    psx profile     change profile command prompt
+    psx time        setup time on command prompt
+    psx help        get help
+"""
+        ;;
+esac
