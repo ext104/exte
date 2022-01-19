@@ -36,9 +36,10 @@ alias .5='cd ../../../../../'
 alias .6='cd ../../../../../../'
 
 # other
-alias su='su -m'
+su() { if [[ $@ == "-" ]]; then command su "$@"; else command su -m "$@"; fi; }
 alias home='echo $HOME'
 alias mysql="mysql --prompt=\"`hostname` \c \d> \""
+docker() { if [[ $@ == "ps" || $@ == "ps -a" ]]; then command docker "$@" -s --format '\nContainer\t{{.Names}}[{{.ID}}]\nImage\t\t{{.Image}}\nStatus\t\t{{.Status}}\nSize\t\t{{.Size}}\nPorts\t\t{{.Ports}}'; else command docker "$@"; fi; }
 
 # exte
 alias exte="source exte"
