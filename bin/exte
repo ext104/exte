@@ -3,44 +3,8 @@
 source ~/exte/etc/exte.conf
 
 case $1 in
-    "notes")
-        case $2 in
-            "add")
-                echo $3 >> ${extefs['root']}/notes
-                ;;
-            "rm")
-                sed -i "$3"'d' ${extefs['root']}/notes
-                ;;
-            "")
-                nl ${extefs['root']}/notes
-                ;;
-            "--help" | "-h")
-                echo -e """\
-\e[1;35mexte notes\e[m - get created notes
-Usage: exte notes <command>
-
-get notes: exte notes
-add note: exte notes add \"note\"
-rm note: exte notes rm <line number>
-"""
-                ;;
-        esac
-        ;;
     "version" | "-v" | "--version")
         echo -e $EXTE_VERSION
-        ;;
-    "sourced" | "executed" | "-s")
-        case $2 in
-            "")
-                echo "log has been removed" 
-                ;;
-            "--help" | "-h")
-                echo -e """\
-\e[1;35mexte sourced\e[m - get included scripts
-Usage: exte sourced
-"""
-                ;;
-        esac
         ;;
     "" | "help" | "-h" | "--help")
         echo -e $EXTE_VERSION
@@ -48,8 +12,6 @@ Usage: exte sourced
 Usage: exte [--version] [--help] <command> [<args>]
 
 These are common exte commands used:
-    sourced     get all included scripts
-    notes       get created notes
     version     get current version
     help        get help
 """

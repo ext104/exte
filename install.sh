@@ -4,8 +4,8 @@
 source ~/exte/etc/exte.conf
 
 echo -en "You're \e[1;35m"`whoami`"\e[m\n"'Entry git repository path if you want to download updates: '
-read extegit
-echo $extegit > ${extefs['etc']}/gitpath
+read gitRepositoy
+echo $gitRepositoy > ${extefs['etc']}/repository
 
 rm -f $HOME/.vimrc $HOME/.zshrc $HOME/.bashrc
 

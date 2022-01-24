@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ~/exte/etc/exte.conf
-source ~/exte/etc/psx/psx.conf
+source ~/exte/etc/psx.conf
 
 function run(){
     if [[ -f  "${extefs['profiles']}/$PSPROFILE.sh" ]]
@@ -22,9 +22,7 @@ Usage: psx profile [--help] <name profile>
 
 available profilies:
     default
-    bottom
-    bottomnull
-    low
+    legacy
 """
                 ;;
             *)
