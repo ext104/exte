@@ -4,11 +4,11 @@ source ~/exte/etc/exte.conf
 source ~/exte/etc/psx/psx.conf
 
 function run(){
-    if [[ -f "$PSX_PROFILES/$PSPROFILE.sh" ]]
+    if [[ -f  "${extefs['profiles']}/$PSPROFILE.sh" ]]
     then
-        source $PSX_PROFILES/$PSPROFILE.sh
+        source ${extefs['profiles']}/$PSPROFILE.sh
     else
-        source $PSX_PROFILES/default.sh
+        source ${extefs['profiles']}/default.sh
     fi
 }
 

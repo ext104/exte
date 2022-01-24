@@ -6,13 +6,13 @@ case $1 in
     "notes")
         case $2 in
             "add")
-                echo $3 >> $EXTE_PATH/exte/notes
+                echo $3 >> ${extefs['root']}/notes
                 ;;
             "rm")
-                sed -i "$3"'d' $EXTE_PATH/exte/notes
+                sed -i "$3"'d' ${extefs['root']}/notes
                 ;;
             "")
-                nl $EXTE_PATH/exte/notes
+                nl ${extefs['root']}/notes
                 ;;
             "--help" | "-h")
                 echo -e """\
